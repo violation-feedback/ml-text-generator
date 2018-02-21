@@ -1,0 +1,107 @@
+.navbar {
+    font-family: 'Playfair Display', serif;
+    background-color: black;
+    position: absolute; 
+    top: 0; 
+    width: 100%;
+    right: 0px;
+    font-size: 25px; 
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+}
+
+.navbar bar:hover{
+    background: black;
+}
+
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+
+
+.bar{
+    border-right: 1px solid white;
+    margin-top: 10px;
+    height: 15px;
+
+}
+
+.YouMightAlsoLike{
+    font-size: 30px;
+    font-family: "Open Sans";
+	font-size: 20px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+
+ hr { 
+     margin: 0px; 
+     
+}
+ 
+.title{
+  text-align: center;
+}
+.garlic{
+  width: 50%;
+  padding-bottom: 1%;
+  padding-top: 5%;
+}
+
+.news{ 
+  padding-left: 2%;
+  float: right;
+  width: 65%;
+  
+}
+
+.headline{
+    font-family: "Playfair Display";
+	font-size: 55px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 55px;
+}
+
+.newsInBrief{
+  font-family: "Open Sans";
+	font-size: 20px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+  color: green;
+  padding-left: 5px;
+}
+
+.image{
+    width: 40%;
+    height: 30%;
+    text-align: center;
+    padding: 25px;
+}
+
+.today{
+  width: 25%;
+  float: left;
+  padding-left: 2%;
+  padding-right: 2%;
+  font-size: 20px;
+  border-right: 1px solid;
+}
+
+.footer{
+  background-color: black;
+}
