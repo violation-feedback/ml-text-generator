@@ -1,13 +1,15 @@
 $(document).ready(function(){
-  $.getJSON('/api/post.json', 
-    function(data) {
-    var num = Math.floor(Math.random() * 3) + 1;
-  var image = num+".jpg";
-     $(".news").html("<h3 class='newsInBrief'> NEWS IN BRIEF </h3><h1 class='headline'>"+data.titles[0]+"</h1>"+"<img class='image' src='"+image+"'>");
-     
-     $(".youMayAlsoLikeList").html("<li><h2>"+data.titles[1]+"</h2></li><li><h2>"+data.titles[2]+"</h2></li><li><h2>"+data.titles[3]+"</h2></li><h2><li>"+data.titles[4]+"</h2></li>"); 
-        
-    });
-  
-  
+  $.getJSON("./api/post.json", function(data) {
+    var num = Math.floor(Math.random() * 4) + 1;
+    var image = "./images/photo" + num + ".jpg";
+    $(".article h1").text(data.titles[0]);
+    $(".article img").attr("src", image);
+    $("title").text(data.titles[0]);
+    for (var i = 1; i < data.titles.length; i++) {
+      var li = $("<li>");
+      var link = $("<a>").attr("href", "./").text(data.titles[i]);
+      li.append(link);
+      $(".youMayAlsoLikeList").append(li);
+    }
+  });
 });
