@@ -14,7 +14,8 @@ class TheGarlicServer(BaseHTTPRequestHandler):
         'css': 'text/css',
         'js': 'application/javascript',
         'png': 'image/png',
-        'jpeg': 'image/jpeg'
+        'jpeg': 'image/jpeg',
+        'ico': 'image/x-icon'
     }
 
     def do_GET(self):
