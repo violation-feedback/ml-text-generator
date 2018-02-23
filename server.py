@@ -19,14 +19,15 @@ class TheGarlicServer(BaseHTTPRequestHandler):
     }
 
     def do_GET(self):
+        content = ''.encode('utf-8')
         if self.path.startswith('/api/post.json'):
             titles = dict(titles=[TGEN.generateTitle() for _ in range(5)])
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
-            self.end_headers()
-            self.wfile.write(json.dumps(titles).encode('utf-8'))
+            self.send_header('Cache-Control', 'no-cache')
+            content = json.dumps(titles).encode('utf-8')
         else:
-            filepath = self.path
+            filepath = self.path.split('?')[0]
             if filepath.endswith('/'):
                 filepath += 'index.html'
             filepath = WEB_ROOT + path.join(*('.' + filepath).split('/'))[1:]
@@ -35,13 +36,15 @@ class TheGarlicServer(BaseHTTPRequestHandler):
                 with io.open(filepath, 'rb') as f:
                     self.send_response(200)
                     self.send_header('Content-Type', self.mimeTypes.get(ext, 'application/octet-stream'))
-                    self.end_headers()
-                    self.wfile.write(f.read())
+                    self.send_header('Cache-Control', 'max-age=1800')
+                    content = f.read()
             except Exception as e:
                 self.send_response(404)
                 self.send_header('Content-Type', 'text/plain')
-                self.end_headers()
-                self.wfile.write(('404 ' + self.path).encode('utf-8'))
+                content = ('404 ' + self.path).encode('utf-8')
+        self.send_header('Content-Length', str(len(content)))
+        self.end_headers()
+        self.wfile.write(content)
 
 if __name__ == '__main__':
     TGEN = TitleGenerator(150)
