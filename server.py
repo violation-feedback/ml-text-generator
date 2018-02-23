@@ -1,7 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from os import path
 from titlegen import TitleGenerator
-import json, io
+import json, io, sys
 
 WEB_ROOT = 'static'
 
@@ -14,7 +14,7 @@ class TheGarlicServer(BaseHTTPRequestHandler):
         'css': 'text/css',
         'js': 'application/javascript',
         'png': 'image/png',
-        'jpeg': 'image/jpeg',
+        'jpg': 'image/jpeg',
         'ico': 'image/x-icon'
     }
 
@@ -46,6 +46,8 @@ class TheGarlicServer(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     TGEN = TitleGenerator(150)
     server_address = ('127.0.0.1', 9420)
+    if len(sys.argv) > 1:
+        server_address = ('', int(sys.argv[1]))
     httpd = HTTPServer(server_address, TheGarlicServer)
     print('running server...')
     httpd.serve_forever()
